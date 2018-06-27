@@ -1,3 +1,10 @@
-h1{
-    font-family: Arial, Helvetica, sans-serif
+h1 {
+    font-family:  Helvetica, Arial, sans-serif
+}
+.bold{
+    font-family: 'Merriweather', serif;
+}
+.fancy{
+    font-family: 'Slabo 27px', serif;
+    color: red;
 }
