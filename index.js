@@ -11,6 +11,7 @@ const addDinoToList = function(ev){
     entry.appendChild(dinomaker())
     entry.appendChild(dinoFeeder())
     list.appendChild(entry)
+    form.reset()
 }
 
 const dinomaker = function(){
