@@ -1,6 +1,11 @@
 
 const userInput = document.querySelector('.favDinosaur') 
 let dinoArray = []
+dinoArray.forEach((object) =>{
+    tempBtn = document.querySelector('.'+ object.species)
+    tempBtn.addEventListener("click", delInput)
+})
+userInput.addEventListener('submit',addDinoToList)
 
 const addDinoToList = function(ev){
     ev.preventDefault()
@@ -53,19 +58,6 @@ const delInput = function(event){
     userInput.removeChild(document.querySelector(idFetcher))
 }
 
-userInput.addEventListener('submit',addDinoToList)
-
-dinoArray.forEach((object) =>{
-    tempBtn = document.querySelector('.'+ object.species)
-    tempBtn.addEventListener("click", delInput)
-})
-
-document.getElementById('list').addEventListener('click',function(e){
-    if (e.target && e.target.nodeName == "BUTTON"){
-        const f = e.target
-        itemDelete(f)
-    }
-})
 const itemDelete = function(f){
     const element = f.closest('li')
     const parElment = element.closest('ol')
