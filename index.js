@@ -1,12 +1,14 @@
-const button = document.querySelector('.btn')
+
 const list = document.querySelector('.dinoList')
-const form = document.querySelector('.favDinosaur')
+form.addEventListener('submit',addDinoToList)
+
 
 
 
 
 const addDinoToList = function(ev){
     ev.preventDefault()
+    const form = document.querySelector('.favDinosaur')
     const entry = document.createElement('li') 
     entry.appendChild(dinomaker())
     entry.appendChild(dinoFeeder())
@@ -37,4 +39,3 @@ const dinoFeeder = function(){
 }
 
 
-form.addEventListener('submit',addDinoToList)
