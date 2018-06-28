@@ -1,6 +1,6 @@
 
 const userInput = document.querySelector('.favDinosaur') 
-
+let dinoArray = []
 
 const addDinoToList = function(ev){
     ev.preventDefault()
@@ -11,9 +11,8 @@ const addDinoToList = function(ev){
         species: form.dinoName.value,
         diet: form.dinoDiet.value
     }
-    
+    dinoArray.push(dinosaur)
     const dinoEntry = createDino(dinosaur)
-    debugger
     list.appendChild(dinoEntry)
 
     form.reset()
@@ -23,11 +22,18 @@ const addDinoToList = function(ev){
 
 const createDino = function(dinosaur){
     const entry = document.createElement('li') 
+    const btn = document.createElement('button')
+
+    entry.classList.add(dinosaur.species)
+    btn.classList.add(dinosaur.species)
     const properties = Object.keys(dinosaur)
     properties.forEach((propertyName) =>{
         const span = spanBuilder(propertyName, dinosaur[propertyName])
         entry.appendChild(span)
     })
+    btn.textContent = "Delete"
+    btn.id = dinosaur.species
+    entry.appendChild(btn)
     return entry
 }
 
@@ -41,4 +47,33 @@ const spanBuilder = function(name, value){
     return span
 }
 
+const delInput = function(event){
+    event.preventDefault()
+    idFetcher = event.target.classList.value
+    userInput.removeChild(document.querySelector(idFetcher))
+}
+
 userInput.addEventListener('submit',addDinoToList)
+
+dinoArray.forEach((object) =>{
+    tempBtn = document.querySelector('.'+ object.species)
+    tempBtn.addEventListener("click", delInput)
+})
+
+document.getElementById('list').addEventListener('click',function(e){
+    if (e.target && e.target.nodeName == "BUTTON"){
+        const f = e.target
+        itemDelete(f)
+    }
+})
+const itemDelete = function(f){
+    const element = f.closest('li')
+    const parElment = element.closest('ol')
+    parElment.removeChild(element)
+    let eraser = 0
+    dinoArray.forEach(function(element){
+        if (element.species == f)
+        eraser = dinoArray.findIndex(element)
+    })
+    dinoArray.splice (eraser, 1)
+}
